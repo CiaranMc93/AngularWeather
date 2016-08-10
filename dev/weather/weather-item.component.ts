@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {WeatherItem} from './weather-item';
 
 @Component({
@@ -14,14 +14,16 @@ import {WeatherItem} from './weather-item';
 			</div>
 		</article>
 	`,
-	styleUrls: ['src/css/weather-item.css']
+	styleUrls: ['src/css/weather-item.css'],
+	//inputs: ['weatherItem: item']
 })
 
-export class WeatherItemComponent {
-	weatherItem: WeatherItem;
+//there can be two ways to add aliases to a property and pass data between components
+//in the inputs above or below, the colon means we specify the alias item
+//if we comment inputs out it wont work.
+//input annotation uses @Input which allows us to add decorators and annotations
 
-	constructor(){
-		this.weatherItem = new WeatherItem('London', 'RAINY', 32);
-	}
-	
+export class WeatherItemComponent {
+	@Input('item') weatherItem: WeatherItem;
+
 }
