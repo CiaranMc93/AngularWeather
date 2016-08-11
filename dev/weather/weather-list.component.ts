@@ -31,6 +31,7 @@ export class WeatherListComponent implements OnInit {
 	}
 
 	//this will be called as we have implemented the OnInit
+	//the constructor above uses this method to populate itsef with the data from weatherService.
 	ngOnInit():any{
 		this.weatherItems = this._weatherService.getWeatherItems();
 	}
