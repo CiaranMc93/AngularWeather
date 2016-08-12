@@ -1,5 +1,7 @@
 import {Component} from "angular2/core";
 import {ControlGroup} from "angular2/common";
+import {WeatherService} from "./weather.service";
+import {WeatherItem} from './weather-item';
 
 @Component({
 	selector: 'weather-search',
@@ -15,7 +17,8 @@ import {ControlGroup} from "angular2/common";
 			</div>
 		</section>
 
-	`
+	`,
+	providers: [WeatherService]
 })
 
 //form tag within the angular 2 template directive automatically does a lot of stuff
@@ -26,7 +29,19 @@ import {ControlGroup} from "angular2/common";
 
 export class WeatherSearchComponent
 {
+
+	constructor(private _weatherService: WeatherService){
+
+	}
+
 	onSubmit(form: ControlGroup){
-		console.log(form);
+		this._weatherService.searchWeatherData(form.value.location)
+		.subscribe(
+			//create a new item and add it to the dummy data array
+			data => {
+				const weatherItem = new WeatherItem(data.name,data.weather[0].main,data.main.temp);
+				this._weatherService.addWeatherItem(weatherItem);
+			}
+		);
 	}
 }

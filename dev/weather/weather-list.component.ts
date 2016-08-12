@@ -16,8 +16,6 @@ import {WeatherService} from './weather.service';
 		</section>
 	`,
 	directives: [WeatherItemComponent],
-	//providers are the types of the obejects i want to inject
-	providers: [WeatherService]
 })
 
 //above we see a lot of weather items, we have the for loop to loop through each weatherItems and place them in the local
